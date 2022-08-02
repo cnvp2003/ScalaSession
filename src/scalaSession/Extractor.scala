@@ -20,6 +20,20 @@ object ExtractorTest extends App {
     case Extractor(name) => println(name)  // prints test
     case _ => println("something went wrong")
   }
+
+
+  val list = List(3, 7, "testPerson", 3.0)
+
+  list.map { x =>
+    x match{
+      case i:Int => println(s"it's Interger")
+      case s:String => println(s"it's String")
+      case _ => println(s"default.. ")
+    }
+
+  }
+
+
 }
 
 //another example

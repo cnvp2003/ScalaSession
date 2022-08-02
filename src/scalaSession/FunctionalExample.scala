@@ -42,3 +42,5 @@ case class Pizza1(crustSize: CrustSize, crustType: CrustType, toppings: Seq[Topp
 case class Order1(pizzas: Seq[Pizza1], customer: Customer1)
 case class Customer1(name: String, phone: String, address: Address1)
 case class Address1(street1: String, street2: String, city: String, state: String, zipCode: String)
+
+

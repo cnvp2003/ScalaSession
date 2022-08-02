@@ -6,7 +6,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 object ForComprehension extends App {
 
   val future1 = Future {
-    Thread.sleep(20000) //20 sec
+    Thread.sleep(20000) //20 sec// postgress.. >> mysql
     42
   }
   val future2 = Future {
@@ -35,11 +35,27 @@ object ForComprehension extends App {
   def findUserById(id: Long): Future[User] = ???
   def findProfileByUser(user: User): Future[Profile] = ???
 
-  //Seqeuntial
+  //Seqeuntial //Future chaining
   def findProfileByUserId(id: Long): Future[Profile] =
     for {
       user    <- findUserById(id)
       profile <- findProfileByUser(user)
     } yield profile
 
+  //In general example
+  //No return type for for loop
+  for (i <- 1 to 5) {
+   Thread.sleep(10000) //10 sec... check here earlier future result
+    println(s"x $i = ${2 * i}")
+  }
+
+  // For yield loop (Transform collection from one type to another)
+  val a = List(2, 5, 1, 4, 8)
+  val xx = for {
+    e <- a
+    s = s"${e*2}-Value"
+  } yield {
+    println(s" yielddd $s")
+    s
+  }
 }

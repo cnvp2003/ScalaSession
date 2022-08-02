@@ -13,18 +13,34 @@ class Person extends App {
   def main() ={
     println("Scala Start!")
   }
+  PersonTest.testPrint
 }
 
 //Object
 object PersonTest {
   new Person()
+  def testPrint = s"This is test Object"
 }
 
 //Trait, Sealed Trait
+trait Currency1 //interoperable with Java.
+
 sealed trait Currency { def name: String }
-case  object EUR extends Currency { val name = "eur" }
-case  object USD extends Currency { val name = "usd" }
+case object EUR extends Currency { val name = "eur" }
+case object USD extends Currency { val name = "usd" }
 case class UnknownCurrency(name: String) extends Currency
+
+//simple domain model
+case class User(name: String, cart: Cart)
+case class Cart(id: String, item: Item, quantity: Int)
+case class Item(sku: String, price: Double, leftInStock: Int, discount: Discount)
+
+//an ADT (Algebraic Data Type) describing types of discounts on products
+trait Discount
+case class NoDiscount() extends Discount
+case class PercentageOff(value: Double) extends Discount
+case class FixPriceOff(value: Double) extends Discount
+
 
 case class PersonTest(name:String, age:Int)
 /*

@@ -1,7 +1,7 @@
 package scalaSession
 
 object Enumeration extends App {
-
+/*
   object Weekday extends Enumeration {
     val Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday = Value
   }
@@ -27,7 +27,7 @@ object Enumeration extends App {
   // another Enumeration in same file create problems while calling it
   object OtherWeek extends Enumeration {
     val A, B, C = Value
-  }
+  }*/
 /*  def enumTest(enum: Weekday.Value) = {    println(s"value: $enum")  }
   def enumTest(enum: OtherWeek.Value) = {    println(s"value: $enum")  }*/
 
@@ -45,8 +45,11 @@ object Enumeration extends App {
     weekday match {
       case Monday => println("I hate Mondays")
       case Sunday => println("The weekend is already over? :( ")
+      case _ => println("default ")
     }
   }
+
+  println(s"test ${test(Wednesday)}")
 
   /*
   * warning: match may not be exhaustive.
