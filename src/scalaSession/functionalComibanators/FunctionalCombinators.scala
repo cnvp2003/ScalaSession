@@ -1,5 +1,8 @@
 package scalaSession.functionalComibanators
 
+import scala.collection.immutable
+
+
 object FunctionalCombinators extends App {
 
   val m = Map("a" -> 2, "b" -> 3) //

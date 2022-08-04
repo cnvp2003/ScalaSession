@@ -33,7 +33,7 @@ object ErrorHandling extends App {
     success => println (s"$success")
   )
 
-  //Option
+  //Option, Some, None
   def divide(x: Int, y: Int): Option[Int] =
     try {
       Option(x / y)

@@ -6,14 +6,14 @@ object HigherOrderFunction {
     println(s"Sort ${isSorted(List("aa", "bc", "ads", "asdd"), (a: String, b: String) => a.length <= b.length)}")
     //res1: Boolean = true
 
-    println(s"Sort Empty: ${isSorted(List(), (a: Int, b: Int) => a <= b)}")
+   /* println(s"Sort Empty: ${isSorted(List(), (a: Int, b: Int) => a <= b)}")
     //res2: Boolean = true
     println(s"Sort one value: ${isSorted(List(1), (a: Int, b: Int) => a <= b)}")
     //res3: Boolean = true
     println(s"Sort 2 values: ${isSorted(List(2,1), (a: Int, b: Int) => a <= b)}")
     //res4: Boolean = false
     println(s"Sort ${isSorted(List(1,2,3,4), (a: Int, b: Int) => a <= b)}")
-    //res5: Boolean = true
+    //res5: Boolean = true*/
     println(s"Sort 1 t0 10: ${isSorted(List(1,2,3,4,5,6,7,8,9,10), (a: Int, b: Int) => a <= b)}")
     //res6: Boolean = true
     println(s"Sort ${isSorted(List(1,2,3,4,1,5,3,2), (a: Int, b: Int) => a <= b)}")
@@ -28,28 +28,28 @@ object HigherOrderFunction {
     //res10: Boolean = true
 
     // Array
-    println(s"Sort Array manually ${isSortedArray(Array("Scala", "Exercises"), (x: String, y: String) => x.length < y.length)}")
+ //   println(s"Sort Array manually ${isSortedArray(Array("Scala", "Exercises"), (x: String, y: String) => x.length < y.length)}")
     //res11: Boolean = true
-   /* println(s"Sort Array with Function asc${isSortedArray(Array("Scala", "Exercises"), comparef)}")
+/*   println(s"Sort Array with Function asc${isSortedArray(Array("Scala", "Exercises"), comparef(_,_))}")
     //res12: Boolean = true
-    println(s"Sort Array with Function desc ${isSortedArray(Array("Exercises", "Scala"), comparef)}")
+    println(s"Sort Array with Function desc ${isSortedArray(Array("Exercises", "Scala"), comparef(_,_))}")
     //res13: Boolean = false
-    println(s"Sort Arrayyyy ${isSortedArray(Array("Scala", "Exercises"), comparef)}")*/
+    println(s"Sort Arrayyyy ${isSortedArray(Array("Scala", "Exercises"), comparef(_,_))}")*/
     //res14: Boolean = true
 
 
-    println(s"MAXXX: ${findMax(listOfNumber, (a: Int, b: Int) => if(a> b) a else b)}")
+  //  println(s"MAXXX: ${findMax(listOfNumber, (a: Int, b: Int) => if(a> b) a else b)}")
     //res15: Int = MAXXX: 9
   }
 
-  // correct the logic here for sort
+/*  // correct the logic here for sort
   def comparef[A](x:A, y:A):Boolean={
     (x, y) match{
       case (x: String, y:String) => x.length < y.length
       case (x: Int, y:Int)  => x < y
       case _ => false
     }
-  }
+  }*/
 
 //Correct this Function
   /*

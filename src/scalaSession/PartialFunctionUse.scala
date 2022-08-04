@@ -7,7 +7,7 @@ object PartialFunctionUse {
       case 0 => 0
     })
     //List(3, 2, 1, 0).map { case n: Int if (n != 0) => 42.0 / _ }
-    println(List(3, 2, 1, 0).collect { case n: Int if (n != 0) => 42.0 / n }) //scala provided
+    println(s"First Result: ${List(3, 2, 1, 0).collect { case n: Int if (n != 0) => 42.0 / n }}") //scala provided
 
     println("new: "+List(3, 2, 1, 0).map {
       case n: Int if (n != 0) => 42.0 / n
@@ -15,9 +15,10 @@ object PartialFunctionUse {
     }.filter(_ >0))
 
     // custom function
-    val squareRoot: PartialFunction[Double, Double] = {
+    def squareRoot: PartialFunction[Double, Double] = {
       case x if x >= 0 => Math.sqrt(x)
     }
+
     squareRoot.isDefinedAt(2)  //true
     squareRoot.isDefinedAt(-2) //false
 
