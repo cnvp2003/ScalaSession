@@ -1,7 +1,9 @@
 package scalaSession
 
-object Enumeration extends App {
-/*
+object Enumeration {
+  def main(args: Array[String]) {
+
+    /*
   object Weekday extends Enumeration {
     val Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday = Value
   }
@@ -28,34 +30,35 @@ object Enumeration extends App {
   object OtherWeek extends Enumeration {
     val A, B, C = Value
   }*/
-/*  def enumTest(enum: Weekday.Value) = {    println(s"value: $enum")  }
+    /*  def enumTest(enum: Weekday.Value) = {    println(s"value: $enum")  }
   def enumTest(enum: OtherWeek.Value) = {    println(s"value: $enum")  }*/
 
-  //There’s no exhaustive matching check during compile, where as Sealed trait gives warning
-  sealed trait Weekday
-  case object Monday extends Weekday
-  case object Tuesday extends Weekday
-  case object Wednesday extends Weekday
-  case object Thursday extends Weekday
-  case object Friday extends Weekday
-  case object Saturday extends Weekday
-  case object Sunday extends Weekday
+    //There’s no exhaustive matching check during compile, where as Sealed trait gives warning
+    sealed trait Weekday
+    case object Monday extends Weekday
+    case object Tuesday extends Weekday
+    case object Wednesday extends Weekday
+    case object Thursday extends Weekday
+    case object Friday extends Weekday
+    case object Saturday extends Weekday
+    case object Sunday extends Weekday
 
-  def test(weekday: Weekday) = {
-    weekday match {
-      case Monday => println("I hate Mondays")
-      case Sunday => println("The weekend is already over? :( ")
-      case _ => println("default ")
+    //Pattern match
+    def test(weekday: Weekday) = {
+      weekday match {
+        case Monday => println("I hate Mondays")
+        case Sunday => println("The weekend is already over? :( ")
+        case _ => println("default ")
+      }
     }
-  }
 
-  println(s"test ${test(Wednesday)}")
+    println(s"test ${test(Wednesday)}")
 
-  /*
+    /*
   * warning: match may not be exhaustive.
   * It would fail on the following inputs: Friday, Saturday, Thursday, Tuesday, Wednesday
   *             weekday match {
   * test: (weekday: Weekday)Unit
   * */
-
+  }
 }

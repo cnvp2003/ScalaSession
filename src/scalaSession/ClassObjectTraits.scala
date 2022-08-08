@@ -1,6 +1,7 @@
 package scalaSession
 
 //Class
+//val, var, def
 class Person extends App {
   val nameVal ="Test Person1"
   //nameVal ="Test Person2"  //error as nameVal is immutable like constant
@@ -8,7 +9,9 @@ class Person extends App {
   var nameVar = "Test Person2"
   nameVar = "Test Person3"  // variable same in java
 
-  def nameDef = "Test PersonDef"  //will be initialized on call... Lazy Initialization
+  def nameDef = {
+    "Test PersonDef"
+  } //will be initialized on call... Lazy Initialization
 
   def main() ={
     println("Scala Start!")
@@ -26,8 +29,8 @@ object PersonTest {
 trait Currency1 //interoperable with Java.
 
 sealed trait Currency { def name: String }
-case object EUR extends Currency { val name = "eur" }
-case object USD extends Currency { val name = "usd" }
+case class EUR() extends Currency { val name = "eur" }
+case class USD() extends Currency { val name = "usd" }
 case class UnknownCurrency(name: String) extends Currency
 
 //simple domain model

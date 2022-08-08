@@ -2,8 +2,9 @@ package scalaSession
 import scala.util.Random
 
 //Extractors
-object ExtractorTest extends App {
-  object Extractor {
+object ExtractorTest {
+
+  /*object Extractor {
     //Constructor
     def apply(name: String) = s"$name--${Random.nextLong}"
 
@@ -19,21 +20,36 @@ object ExtractorTest extends App {
   extractor match {
     case Extractor(name) => println(name)  // prints test
     case _ => println("something went wrong")
-  }
+  }*/
+  def main(args: Array[String]) {
 
+    val list = List(3, 7, "testPerson", 3.0)
+    val listCurrency: List[Currency] = List(EUR(), USD(), EUR(), UnknownCurrency("INR"))
 
-  val list = List(3, 7, "testPerson", 3.0)
+ /*   for (l <- listCurrency) {
+      l match {
+        case e: EUR => println(s"it's Euro")
+        case u: USD => println(s"Dollar.. ")
+        case uk: UnknownCurrency => println(s"Unknown.. ")
+      }
+    }*/
 
-  list.map { x =>
-    x match{
-      case i:Int => println(s"it's Interger")
-      case s:String => println(s"it's String")
-      case _ => println(s"default.. ")
+    for (l <- listCurrency) {
+      l match {
+        case EUR() => println(s"it's Euro")
+        case USD() => println(s"Dollar.. ")
+        case UnknownCurrency(e) => println(s"Unknown.. ") // warning: pattern match not exhaustive
+      }
+    }
+    list.map { x =>
+      x match {
+        case i: Int => println(s"it's Interger")
+        case s: String => println(s"it's String")
+        case _ => println(s"default.. ")
+      }
     }
 
   }
-
-
 }
 
 //another example
