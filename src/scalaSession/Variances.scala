@@ -1,4 +1,3 @@
-/*
 package scalaSession
 
 object Variances extends App {
@@ -56,4 +55,4 @@ Only subtypes of Mammal are ok*/
     method3(new Box3[Mammal])
     method3(new Box3[Dog]) //compile fails
 }
-*/
+

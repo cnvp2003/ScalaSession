@@ -4,11 +4,21 @@ import java.util.UUID
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 object ForComprehension extends App {
+  //blocking function
+  val blockingFunction:Int = {
+    Thread.sleep(10000)
+    34
+  }
 
+  println(s"Blocking call done.")
+
+  //Asyn blocking function
+  //requires thread pool which wil be provided with execution context
   val future1 = Future {
-    Thread.sleep(20000) //20 sec// postgress.. >> mysql
+    Thread.sleep(20000) //20 sec //blocking call
     42
   }
+  //Asyn non-blocking function
   val future2 = Future {
     Thread.sleep(10000) //10 sec
     44
@@ -16,6 +26,7 @@ object ForComprehension extends App {
 
   //Run parallel and get result once
   //will wait for both futures to complete
+  //Asyn non-blocking function
   val result= for {
     result0 <- future1
     result1 <- future2
