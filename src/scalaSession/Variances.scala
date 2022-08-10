@@ -17,7 +17,6 @@ object Variances extends App {
   class OtherContry[-T]
 
 
-
   class Animal {}
   class Mammal extends Animal{}
   class Dog extends Mammal{}
@@ -41,18 +40,18 @@ Only subtypes of Mammal are ok*/
     def method3(box:Box3[Mammal]){}
 
     /*covariance*/
-    method1(new Box1[Animal]) //compile fails
+   // method1(new Box1[Animal]) //compile fails
     method1(new Box1[Mammal])
     method1(new Box1[Dog])
 
     /*contravariance*/
     method2(new Box2[Animal])
     method2(new Box2[Mammal])
-    method2(new Box2[Dog]) //compile fails
+    //method2(new Box2[Dog]) //compile fails
 
     /*invariance*/
-    method3(new Box3[Animal]) //compile fails
+    //method3(new Box3[Animal]) //compile fails
     method3(new Box3[Mammal])
-    method3(new Box3[Dog]) //compile fails
+    //method3(new Box3[Dog]) //compile fails
 }
 

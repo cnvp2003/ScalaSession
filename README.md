@@ -17,3 +17,8 @@ Scala Learning for beginners
 14. Partial Function, Partially applied function
 15. What is parallel and Concurrent processing? Future, Asyn, await call.
 
+### References:
+* https://danielwestheide.com/books/the-neophytes-guide-to-scala/
+* https://www.w3resource.com/scala-exercises/basic/index.php
+
+![img.png](img.png)

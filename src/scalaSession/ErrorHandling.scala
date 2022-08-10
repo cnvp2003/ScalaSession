@@ -44,7 +44,6 @@ object ErrorHandling extends App {
   val result: Option[Int] = divide(44, 0)
   println(result)
 
-
   //Try
   def toInt(s: String): Try[Int] = Try {
     Integer.parseInt(s.trim)
@@ -55,6 +54,12 @@ object ErrorHandling extends App {
     case Failure(s) => println(s"Failed. Reason: $s")
   }
 
+  val list = List("22", "11", "5")
+  val conversionResult = list.map{ i =>
+    Try(i.toInt)
+  }.filter(_.isSuccess).map(_.get)
+
+  println(s"conversionResult:: ${conversionResult}")
 }
 
 

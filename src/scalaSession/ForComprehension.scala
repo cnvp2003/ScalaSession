@@ -53,6 +53,11 @@ object ForComprehension extends App {
       profile <- findProfileByUser(user)
     } yield profile
 
+
+  val resultPrfl: Future[Profile] = findUserById(123).flatMap { user =>
+    findProfileByUser(user)
+  }
+
   //In general example
   //No return type for for loop
   for (i <- 1 to 5) {

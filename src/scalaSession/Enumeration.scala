@@ -3,7 +3,7 @@ package scalaSession
 object Enumeration {
   def main(args: Array[String]) {
 
-    /*
+
   object Weekday extends Enumeration {
     val Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday = Value
   }
@@ -27,7 +27,7 @@ object Enumeration {
 
   // 2 Drawback are there
   // another Enumeration in same file create problems while calling it
-  object OtherWeek extends Enumeration {
+/*  object OtherWeek extends Enumeration {
     val A, B, C = Value
   }*/
     /*  def enumTest(enum: Weekday.Value) = {    println(s"value: $enum")  }
@@ -35,7 +35,9 @@ object Enumeration {
 
     //There’s no exhaustive matching check during compile, where as Sealed trait gives warning
     sealed trait Weekday
-    case object Monday extends Weekday
+    case object Monday extends Weekday{
+      val name ="This is first day of week"
+    }
     case object Tuesday extends Weekday
     case object Wednesday extends Weekday
     case object Thursday extends Weekday
@@ -48,6 +50,7 @@ object Enumeration {
       weekday match {
         case Monday => println("I hate Mondays")
         case Sunday => println("The weekend is already over? :( ")
+        case Tuesday => println("The weekend is already over? :( ")
         case _ => println("default ")
       }
     }

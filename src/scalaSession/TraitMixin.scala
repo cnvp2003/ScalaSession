@@ -30,10 +30,11 @@ trait NewLine extends Printer {
 trait Caps extends Printer {
   override def test(str: String): Unit = {
     println("In Caps "+str.capitalize)
-   // super.test(str.capitalize)
+    //super.test(str.capitalize)
     println("Caps "+str.capitalize)
   }
 }
+
 
 /*Keep in mind that, like the Call Super anti-pattern, the Stackable Traits pattern doesn't really work for all methods in general (it is called dynamic binding)-- it only works for methods that are easily composed in a linear fashion*/
 object TraitMixin {
