@@ -20,4 +20,13 @@ object PartiallyAppliedFunction extends App {
 
   println(s"Implicit Result: ${write("Hello")}")
 
+/*  implicit val xyz: String = "testSession"
+  implicit val x: Int = 123
+
+  def testPerson(id:Int, name:String)(implicit i:Int, dc:String, ii:Int)={
+    db.insert(id, name)
+  }
+
+  testPerson(2, "test")*/
+
 }

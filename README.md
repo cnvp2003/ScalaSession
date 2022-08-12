@@ -18,6 +18,7 @@ Scala Learning for beginners
 15. What is parallel and Concurrent processing? Future, Asyn, await call.
 
 ### References:
+* https://www.educative.io/blog/scala-tutorial-for-java-programmers
 * https://danielwestheide.com/books/the-neophytes-guide-to-scala/
 * https://www.w3resource.com/scala-exercises/basic/index.php
 

@@ -28,8 +28,8 @@ object ForComprehension extends App {
   //will wait for both futures to complete
   //Asyn non-blocking function
   val result= for {
-    result0 <- future1
-    result1 <- future2
+    result0 <- future1 //10
+    result1 <- future2  //sec 2
   } yield {
     println(s"res0::: ${result0}")
     println(s"res1::: ${result1}")
@@ -38,7 +38,7 @@ object ForComprehension extends App {
 
   println(s"res::: ${result} ")
 
-
+/*
   //another example
   case class User(Id:Long, name:String, profile: Profile)
   case class Profile(Id:Long, name:String, dept: String)
@@ -56,7 +56,7 @@ object ForComprehension extends App {
 
   val resultPrfl: Future[Profile] = findUserById(123).flatMap { user =>
     findProfileByUser(user)
-  }
+  }*/
 
   //In general example
   //No return type for for loop

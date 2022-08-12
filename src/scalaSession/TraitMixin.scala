@@ -7,6 +7,10 @@ class Printer {
 }
 
 // trait extends class is bad practice... should be avoided
+trait Pretty1234 extends Printer {
+  def test = ???
+}
+
 trait Pretty extends Printer {
   override def test(str: String): Unit = {
     println("In Pretty " + str)
