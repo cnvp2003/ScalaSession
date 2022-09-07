@@ -40,19 +40,25 @@ object FoldLeft {
 
     val peopleList: List[Person] = people.foldLeft(List.empty[Person])((people, current) =>
       people :+ current._2)
-     // assert(peopleList == List(Person("Amol", 30), 2 -> Person("John", 25), 3 -> Person("Devansh", 15), 4 -> Person("David", 22)))
+//assert(peopleList == List(Person("Amol", 30), 2 -> Person("John", 25), 3 -> Person("Devansh", 15), 4 -> Person("David", 22)))
 
-    //scala 2.13 changes
- /*   val youngestPerson: Person = people.reduceLeft((youngestPerson, currentPerson) => {
-      if (youngestPerson.age > currentPerson.age) {
+   val youngestPerson = peopleList.reduceLeft((youngestPerson, currentPerson) => {
+      if (youngestPerson.age > currentPerson.age)
         currentPerson
-        else {
+        else
           youngestPerson
         })
-      }*/
 
+
+  println(s"youngestPerson:: ${youngestPerson}")
+  println(s"youngestPersonInline:: ${people.foldLeft(List.empty[Person])((p, c) => p :+ c._2).reduceLeft((y, c) => if(y.age > c.age) c else y)}")
+  println(s"youngestPersonInlineValues:: ${people.values.reduceLeft((y, c) => if(y.age > c.age) c else y)}")
 
     val numbersReduce: Seq[Double] = Seq(1.5, 2.0, 2.5)
     println(s"Reduce:: ${numbersReduce.reduce(_ + _)}")
+
+    val stringReduce: Set[String] = Set("test", "Hello")
+    //val stringReduce: Set[Char] =Set('w', 'e', 'k')
+    println(s"Reduce String:: ${stringReduce.reduce(_ + _)}")
   }
 }

@@ -18,7 +18,7 @@ object FutureTest extends App{
       "Test User"
     }
 
-    //Asyn blocking function
+    //Async blocking function
     //requires thread pool which wil be provided with execution context
     val future1 = Future {
       Thread.sleep(20000) //20 sec // blocking call
@@ -64,7 +64,7 @@ object FutureTest extends App{
       Future {
         if (i > 5) {
           println("Received request " + i)
-          Thread.sleep(1000)
+          Thread.sleep(1000000)
           println("returning result for request " + i)
           Some(i + 5)
         } else {
@@ -72,6 +72,16 @@ object FutureTest extends App{
         }
       }
     }
+
+  val someList = List(3, 5, 8, 10)
+
+  val result: Future[List[Option[Int]]] = Future.sequence(someList.map { x =>
+    add5(x)
+  })
+
+/*  result.map{ d =>
+    d.map{ i => i +7}
+  }*/
 
     //Sequential execution with future-chaining
     val futureSeq: Future[Iterable[Int]] = add5(40).flatMap { yOpt =>

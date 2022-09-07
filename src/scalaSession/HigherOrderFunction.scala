@@ -75,10 +75,10 @@ object HigherOrderFunction {
     }
   }
 
-  val ss: List[Int] = List(1, 4 ,6)  //
+/*  val ss: List[Int] = List(1, 4 ,6)  //
 
   val fd: List[(Int, Int)] = ss.zipWithIndex
-  val dd: List[Int] = 78 :+ ss // 78 1 4 6
+  val dd: List[Int] = 78 :+ ss // 78 1 4 6*/
 
   // correct it as per ascending order
    def isSortedArray[A](as: Array[A], f: (A, A) => Boolean): Boolean = {

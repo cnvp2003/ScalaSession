@@ -3,7 +3,11 @@ package scalaSession
 object PartiallyAppliedFunction extends App {
 
   def plus(a: Int)(b: Int) = a + b
+
   def plus2 = plus(2)(_) //Partially applied function
+  def plus3 = plus(3)(_) //Partially applied function
+  def plus4 = plus(4)(_) //Partially applied function
+
   plus2(5) //result 7
   plus(10)(43)
 
