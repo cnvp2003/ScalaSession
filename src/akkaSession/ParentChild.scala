@@ -10,6 +10,8 @@ object ParentActor {
   def props = Props[ParentActor]
 }
 
+//system.actorOf   -> actor for actor system
+//context.actorOf   -> actor for another actor like parent-child
 class ParentActor extends Actor {
   var counter = 0
   override def receive: Receive = {
@@ -30,9 +32,8 @@ class ChildActor extends Actor {
 }
 
 object ParentChild extends App{
-
   val system = ActorSystem("Hierarchy")
-  val actor = system.actorOf(ParentActor.props, "Baap")
+  val actor = system.actorOf(ParentActor.props, "ParentActorr")
 
   actor ! Create
   actor ! RandomVal

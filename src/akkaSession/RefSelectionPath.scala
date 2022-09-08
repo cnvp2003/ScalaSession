@@ -9,17 +9,17 @@ but actor selection will be same as it is based on name **/
 object RefSelectionPath extends App {
   val system = ActorSystem("Actor-Path")
 
-  val counter1 = system.actorOf(Counter.props, "Counter")
+  val counter1 = system.actorOf(Counter.props, "Counter") //actor ref
   println(s"Actor reference for counter1: ${counter1}")
 
-  val actorSelection1 = system.actorSelection("coiunter")
+  val actorSelection1 = system.actorSelection("coiunter") //actor selection based on name not path like /user/coiunter
   println(s"Actor selection for counter1: ${actorSelection1}")
 
   counter1 ! PoisonPill
 
   Thread.sleep(100)
 
-  val counter2 = system.actorOf(Counter.props, "Counter")
+  val counter2 = system.actorOf(Counter.props, "Counter") //In same actor-system can not have identical names
   println(s"Actor reference for counter2: ${counter2}")
 
   val actorSelection2 = system.actorSelection("coiunter")
@@ -28,8 +28,8 @@ object RefSelectionPath extends App {
 
   // To get the reference of current live actor
   val system1 = ActorSystem("Watch-Actor-Selection")
-  val counter = system1.actorOf(Counter.props, "Counter")
-  //println(s"Actor reference for counter1: ${counter}")
+  val counter = system1.actorOf(Counter.props, "Counter") //In different actor-system can have same name
+  println(s"Actor reference for counter1: ${counter}")
   val watcher = system1.actorOf(Watcher.props, "Watcher")
   //println(s"Actor selection for counter1: ${watcher}")
 
@@ -61,7 +61,7 @@ class Watcher extends Actor {
   selectionPath ! Identify(None)
 
   override def receive = {
-    case ActorIdentity(_, Some(ref)) => println(s"Actor reference for counter is ${ref}")
+    case ActorIdentity(_, Some(ref)) => println(s"Actor reference for counter is Watcher >>>> ${ref}")
     case ActorIdentity(_, None) => println(s"Actor selection for actor does not exist")
   }
 }

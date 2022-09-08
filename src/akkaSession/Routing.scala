@@ -1,6 +1,7 @@
 package akkaSession
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
+import akka.routing.{DefaultResizer, RoundRobinPool}
 import akkaSession.Worker.Work
 
 import scala.util.Random
@@ -8,7 +9,7 @@ import scala.util.Random
 class Worker extends Actor {
   def receive = {
     case msg:Work =>
-      println(s"I received work message and my Actor Ref : ${self}")
+      println(s"I received work message and my Actor Ref : ${self.toString()}")
   }
 }
 
@@ -23,7 +24,7 @@ class Router extends Actor {
   var routees :List[ActorRef] = _
   override def preStart(): Unit = {
     routees = List.fill(5)(              //Pool of 5 actors
-      context.actorOf(Worker.props)
+      context.actorOf(Worker.props) //Random unique name for worker actor
     )
   }
 
@@ -37,7 +38,7 @@ class Router extends Actor {
 
 object Routing extends App {
   val system = ActorSystem("Router")
-  val router = system.actorOf(Props[Router])
+  val router = system.actorOf(Props[Router], name = "Router-actor")
 
   router ! Work()
   router ! Work()
@@ -47,6 +48,13 @@ object Routing extends App {
   system.terminate()
 }
 
+// We are using a resizable RoundRobinPool.
+/*val resizer = DefaultResizer(lowerBound = 5, upperBound = 10)
+val props = RoundRobinPool(5, Some(resizer), supervisorStrategy = supervisorStrategy)
+.props(Props[DonutStockWorkerActor])
+val donutStockWorkerRouterPool: ActorRef = context.actorOf(props, "DonutStockWorkerRouter")*/
+
+
 /******************************************************************************************/
 // Router Groups
 class RouterGroup(routess:List[String]) extends Actor {
@@ -55,6 +63,12 @@ class RouterGroup(routess:List[String]) extends Actor {
       println(s"I m router group and received message ${self.path}")
       //Routing strategies can be applied like Round-Robin
       context.actorSelection(routess(Random.nextInt(routess.size))) forward msg
+/*
+      //using RoundRobinPool
+      val resizer = DefaultResizer(lowerBound = 2, upperBound = 5)
+      val props = RoundRobinPool(5, Some(resizer), supervisorStrategy = supervisorStrategy)
+        .props(Props[Worker])
+      context.actorOf(props, "RoundRobinWorker")  forward msg*/
   }
 }
 /*object RouterGroup{
@@ -62,6 +76,8 @@ class RouterGroup(routess:List[String]) extends Actor {
   def prop = Props[RouterGroup]
 }*/
 
+/*
+//Group actors and define unique names for actors
 object RoutingGroupAPP extends App {
   val system = ActorSystem("Router-Group")
   system.actorOf(Props[Worker], "W1")
@@ -85,3 +101,4 @@ object RoutingGroupAPP extends App {
   Thread.sleep(100)
   system.terminate()
 }
+*/
