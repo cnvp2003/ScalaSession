@@ -15,7 +15,9 @@ object ParentActor {
 class ParentActor extends Actor {
   var counter = 0
   override def receive: Receive = {
-    case Create => context.actorOf(ChildActor.props, "Child"+counter)
+    //case Create => context.actorOf(ChildActor.props, "Child"+counter)
+    case Create => context.actorOf(Props[ChildActor], "Child"+counter)
+      println(s"Child Created ${counter}")
       counter += 1
     case _ => println(s"Nothing to do!! ${counter}")
   }
@@ -36,10 +38,13 @@ object ParentChild extends App{
   val actor = system.actorOf(ParentActor.props, "ParentActorr")
 
   actor ! Create
+  actor ! Create
+  actor ! Create
   actor ! RandomVal
 
+  Thread.sleep(1000)
   //shutdown actorsystem
-  system.terminate()
+ system.terminate()
 }
 
 

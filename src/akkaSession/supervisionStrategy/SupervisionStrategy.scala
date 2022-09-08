@@ -61,6 +61,7 @@ class SupervisorActor extends Actor {
 
   override def preStart() = {
     // Create Aphrodite Actor
+    println(s"SuperVisor Actor")
     childRef = context.actorOf(Props[WorkerActor], "WorkerActor")
     Thread.sleep(100)
   }
@@ -81,11 +82,11 @@ object SupervisionStrategy extends App {
   // Create supervisorActor Actor
   val supervisorActor = system.actorOf(Props[SupervisorActor], "supervisorActor")
 
-  //   supervisorActor ! "Resume"
+     supervisorActor ! "Resume"
   //   Thread.sleep(1000)
   //   println()
 
-  //  supervisorActor ! "Restart"
+    supervisorActor ! "Restart"
   //  Thread.sleep(1000)
   //  println()
 
